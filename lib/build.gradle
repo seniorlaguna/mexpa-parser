@@ -1,0 +1,20 @@
+plugins {
+    id 'java-library'
+    id 'antlr'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    antlr 'org.antlr:antlr4:4.9.3'
+}
+
+generateGrammarSource {
+    outputDirectory = file("src/main/java/org/seniorlaguna/mexpa/parser")
+    arguments += ['-no-listener', '-visitor']
+    arguments += ['-package', 'org.seniorlaguna.mexpa.parser']
+    inputs.files(source.files)
+}
+
